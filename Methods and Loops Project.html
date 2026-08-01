@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Basics</title>
+</head>
+<body>
+
+    <script>
+        function printRandomNumbers() {
+            var count = 1;
+            
+            while (count <= 5) {
+                var randomNumber = Math.floor(Math.random() * 10) + 1;
+                document.write("Random Number: " + randomNumber + "<br>");
+                count = count + 1;
+            }
+        }
+
+        function printDate() {
+            var today = new Date();
+            document.write("Today's Date: " + today.toDateString() + "<br>");
+        }
+
+        function printRoundedNumber() {
+            var rawNumber = Math.random() * 10;
+            var rounded = Math.round(rawNumber);
+            
+            document.write("Raw Number: " + rawNumber + "<br>");
+            document.write("Rounded Number: " + rounded + "<br>");
+        }
+
+        printRandomNumbers();
+        document.write("<br>");
+
+        printDate();
+        document.write("<br>");
+
+        printRoundedNumber();
+    </script>
+
+</body>
+</html>
