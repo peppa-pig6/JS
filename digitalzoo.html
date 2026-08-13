@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Digital Zoo Manager</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        #zoo-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .zoo-zone {
+            background: #fff;
+            border: 2px solid #ccc;
+            padding: 15px;
+            width: 180px;
+            border-radius: 6px;
+        }
+
+        .highlight {
+            border-color: #28a745;
+            background: #e8f8f5;
+        }
+
+        button {
+            margin: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Digital Zoo Manager</h1>
+
+    <div id="zoo-container">
+        <div class="zoo-zone" id="safari-zone">
+            <h2>Safari Zone</h2>
+            <ul class="animal-list">
+                <li>Lion</li>
+                <li>Zebra</li>
+            </ul>
+        </div>
+        <div class="zoo-zone" id="jungle-zone">
+            <h2>Jungle Zone</h2>
+            <ul class="animal-list">
+                <li>Monkey</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>
+        <button onclick="addAnimal()">1. Add Animal</button>
+        <button onclick="toggleHighlight()">2. Toggle Style</button>
+    </p>
+
+    <script>
+        function addAnimal() {
+            const list = document.querySelector("#safari-zone .animal-list");
+            const newAnimal = document.createElement("li");
+            newAnimal.textContent = "Elephant";
+            list.appendChild(newAnimal);
+        }
+
+        function toggleHighlight() {
+            const container = document.getElementById("zoo-container");
+            container.firstElementChild.classList.toggle("highlight");
+        }
+    </script>
+</body>
+
+</html>
