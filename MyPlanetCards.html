@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Planet Cards</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(160deg, #0b1026 0%, #1b2145 100%);
+            color: #e8eaf6;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #ffd97d;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        #planet-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .Earth,
+        .Mars,
+        .Jupiter {
+            background-color: #161c3a;
+            border: 2px solid;
+            border-top-width: 6px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+            width: 200px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .Earth:hover,
+        .Mars:hover,
+        .Jupiter:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .Earth {
+            border-color: #4da6ff;
+        }
+
+        .Mars {
+            border-color: #e2725b;
+        }
+
+        .Jupiter {
+            border-color: #d9a066;
+        }
+
+        .Earth h2 {
+            color: #4da6ff;
+        }
+
+        .Mars h2 {
+            color: #e2725b;
+        }
+
+        .Jupiter h2 {
+            color: #d9a066;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 1.4rem;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #b9c0e0;
+        }
+
+        button {
+            background-color: #ffd97d;
+            color: #1b2145;
+            border: 2px solid #ffe9ae;
+            border-radius: 999px;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #ffe9ae;
+        }
+    </style>
+
+</head>
+
+<body>
+    <center>
+        <h1>My Planet Cards</h1>
+        <div id="planet-cards-container">
+
+            <div class="Earth">
+                <h2></h2>
+                <h3></h3>
+            </div>
+
+            <div class="Mars">
+                <h2></h2>
+                <h3></h3>
+            </div>
+
+            <div class="Jupiter">
+                <h2></h2>
+                <h3></h3>
+            </div>
+        </div>
+
+        <button onclick="showPlanetCards()">Show Planet Cards!</button>
+    </center>
+
+    <script>
+        function showPlanetCards() {
+            const planetCards = document.querySelectorAll('#planet-cards-container > div');
+
+            planetCards.forEach(card => {
+                const planetName = card.className;
+                const planetDescription = getPlanetDescription(planetName);
+
+                card.querySelector('h2').textContent = planetName;
+                card.querySelector('h3').textContent = planetDescription;
+            });
+        }
+
+        function getPlanetDescription(planetName) {
+            switch (planetName) {
+                case 'Earth':
+                    return 'The third planet from the Sun and our home.';
+                case 'Mars':
+                    return 'The fourth planet from the Sun, known as the Red Planet.';
+                case 'Jupiter':
+                    return 'The fifth planet from the Sun and the largest in our solar system.';
+                default:
+                    return '';
+            }
+        }
+    </script>
+</body>
+
+</html>
