@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Birthday Countdown</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(160deg, #1a0026 0%, #3b0a45 100%);
+            color: #f3e6ff;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #ffd97d;
+            text-align: center;
+        }
+
+        .card {
+            background-color: #2a0a3a;
+            border: 2px solid #c77dff;
+            border-top: 6px solid #c77dff;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+            width: 300px;
+            padding: 24px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        input {
+            padding: 8px;
+            margin: 6px 0 14px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #7b2d8b;
+            background-color: #1e0030;
+            color: #f3e6ff;
+            width: 90%;
+        }
+
+        button {
+            background-color: #ffd97d;
+            color: #1b0030;
+            border: 2px solid #ffe9ae;
+            border-radius: 999px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ffe9ae;
+        }
+
+        #timer {
+            font-size: 1.8rem;
+            color: #ffd97d;
+            margin: 20px 0 8px;
+        }
+
+        #message {
+            color: #c77dff;
+            margin-bottom: 14px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>My Birthday Countdown</h1>
+
+    <div class="card">
+        <input type="text" id="nameInput" placeholder="Your name"><br>
+        <input type="date" id="dateInput"><br>
+        <button onclick="startCountdown()">Start!</button>
+
+        <div id="timer"></div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        let countdownTimer;
+        let targetDate;
+
+        function startCountdown() {
+            const name = document.getElementById('nameInput').value;
+            const dateText = document.getElementById('dateInput').value;
+
+            if (name === '' || dateText === '') {
+                document.getElementById('message').textContent = 'Please fill in both fields!';
+                return;
+            }
+
+            const bday = new Date(dateText);
+            const today = new Date();
+
+            targetDate = new Date(today.getFullYear(), bday.getMonth(), bday.getDate());
+
+            if (targetDate < today) {
+                targetDate = new Date(today.getFullYear() + 1, bday.getMonth(), bday.getDate());
+            }
+
+            clearInterval(countdownTimer);
+            countdownTimer = setInterval(function() {
+                const gap = targetDate - new Date();
+
+                if (gap <= 0) {
+                    document.getElementById('timer').textContent = 'Today!';
+                    document.getElementById('message').textContent = 'Happy Birthday ' + name + '!';
+                    clearInterval(countdownTimer);
+                    return;
+                }
+
+                const totalSecs = Math.floor(gap / 1000);
+                const d = Math.floor(totalSecs / 86400);
+                const h = Math.floor((totalSecs % 86400) / 3600);
+                const m = Math.floor((totalSecs % 3600) / 60);
+                const s = totalSecs % 60;
+
+                document.getElementById('timer').textContent = d + 'd ' + h + 'h ' + m + 'm ' + s + 's';
+
+                switch (true) {
+                    case (d === 0):
+                        document.getElementById('message').textContent = 'Almost there ' + name + '!';
+                        break;
+                    case (d <= 7):
+                        document.getElementById('message').textContent = 'Birthday week ' + name + '!';
+                        break;
+                    default:
+                        document.getElementById('message').textContent = 'Keep counting ' + name + '...';
+                }
+
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
