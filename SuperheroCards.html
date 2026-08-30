@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Superhero Power Cards</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(160deg, #c5c5cc 0%, #9595de 100%);
+            color: #e8eaf6;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #000000;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        #cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .hero-card {
+            background-color: #161c3a;
+            border: 2px solid;
+            border-top-width: 6px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+            width: 200px;
+            min-height: 140px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-card h2 {
+            margin: 0 0 6px;
+            font-size: 1.2rem;
+        }
+
+        .hero-card h3 {
+            margin: 0 0 6px;
+            font-size: 0.85rem;
+            font-weight: normal;
+            color: #b9c0e0;
+        }
+
+        .hero-card p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #9098c0;
+        }
+
+        button {
+            background-color: #ffd97d;
+            color: #1b2145;
+            border: 2px solid #ffe9ae;
+            border-radius: 999px;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: #ffe9ae;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>My Superhero Power Cards</h1>
+
+    <div id="cards-container"></div>
+
+    <button onclick="toggleCards()">Show Hero Cards!</button>
+
+    <script>
+
+        class Superhero {
+            constructor(name, power, weakness, color) {
+                this.name = name;
+                this.power = power;
+                this.weakness = weakness;
+                this.color = color;
+            }
+
+            displayCard() {
+                const card = document.createElement('div');
+                card.className = 'hero-card';
+                card.style.borderColor = this.color;
+
+                const title = document.createElement('h2');
+                title.textContent = this.name;
+                title.style.color = this.color;
+
+                const power = document.createElement('h3');
+                power.textContent = 'Power: ' + this.power;
+
+                const weakness = document.createElement('p');
+                weakness.textContent = 'Weakness: ' + this.weakness;
+
+                card.appendChild(title);
+                card.appendChild(power);
+                card.appendChild(weakness);
+
+                return card;
+            }
+        }
+
+        const hero1 = new Superhero('Spider-Man', 'Web Slinging', 'Ethyl Chloride', '#e23a3a');
+        const hero2 = new Superhero('Thor', 'Lightning', 'Losing Mjolnir', '#4da6ff');
+        const hero3 = new Superhero('Black Panther', 'Vibranium Suit', 'Energy Overload', '#a855f7');
+
+        const heroes = [hero1, hero2, hero3];
+
+        let cardsVisible = false;
+
+        function toggleCards() {
+            cardsVisible = !cardsVisible;
+
+            const container = document.getElementById('cards-container');
+            const btn = document.querySelector('button');
+
+            container.innerHTML = '';
+
+            if (cardsVisible) {
+                heroes.forEach(hero => {
+                    container.appendChild(hero.displayCard());
+                });
+                btn.textContent = 'Hide Hero Cards!';
+            } else {
+                btn.textContent = 'Show Hero Cards!';
+            }
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Daily Task Organizer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: lavender;
+        }
+
+        h1, h3 {
+            color: darkviolet;
+        }
+
+        .box {
+            background: white;
+            color: darkviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-4">
+
+        <h1 class="mb-1">My Daily Task Organizer</h1>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Tasks</h3>
+                <button class="btn btn-primary mr-2" onclick="showOriginal()">Original</button>
+                <button class="btn btn-primary mr-2" onclick="sortNames()">Sort Names</button>
+                <button class="btn btn-primary mr-2" onclick="reverseList()">Reverse</button>
+                <button class="btn btn-primary mr-2" onclick="sortTimes()">Sort Times</button>
+                <button class="btn btn-primary" onclick="addLabel()">Add Labels</button>
+                <div id="result" class="box p-3 mt-3 rounded"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var taskNames = ["Workout", "Breakfast", "Study", "Read", "Walk"];
+        var taskTimes = [60, 20, 90, 30, 45];
+
+        function showOriginal() { document.getElementById("result").innerHTML = "Tasks: " + taskNames; }
+        function sortNames() { var s = [...taskNames].sort(); document.getElementById("result").innerHTML = "Sorted A to Z: " + s; }
+        function reverseList() { var r = [...taskNames].reverse(); document.getElementById("result").innerHTML = "Reversed: " + r; }
+        function sortTimes() { var s = [...taskTimes].sort(function(a, b) { return a - b; }); document.getElementById("result").innerHTML = "Sorted times: " + s; }
+        function addLabel() { var l = taskTimes.map(function(t) { return t + " mins"; }); document.getElementById("result").innerHTML = "Labelled: " + l; }
+
+        showOriginal();
+    </script>
+</body>
+
+</html>
