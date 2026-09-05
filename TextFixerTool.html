@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Text Fixer Tool</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container py-5">
+        <h1 class="mb-4">My Text Fixer Tool</h1>
+
+        <div class="mb-3">
+            <label class="form-label">Enter a number as text</label>
+            <input type="text" id="numInput" class="form-control" placeholder="e.g. 42">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Enter a sentence</label>
+            <input type="text" id="sentenceInput" class="form-control" placeholder="e.g. I like cats">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Word to replace</label>
+            <input type="text" id="findWord" class="form-control" placeholder="e.g. cats">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Replace with</label>
+            <input type="text" id="replaceWord" class="form-control" placeholder="e.g. dogs">
+        </div>
+
+        <button onclick="runFixer()" class="btn btn-primary">Run Fixer</button>
+
+        <div id="output" class="mt-4"></div>
+    </div>
+
+    <script>
+        function runFixer() {
+            var output = document.getElementById("output");
+            output.innerHTML = "";
+
+            var numText = document.getElementById("numInput").value;
+            var sentence = document.getElementById("sentenceInput").value;
+            var findWord = document.getElementById("findWord").value;
+            var replaceWord = document.getElementById("replaceWord").value;
+
+            var typeResult = typeof numText;
+            output.innerHTML += "<p>Type of input: " + typeResult + "</p>";
+
+            var numberVersion = Number(numText);
+            var textVersion = String(numberVersion);
+            output.innerHTML += "<p>Converted to number: " + numberVersion + "</p>";
+            output.innerHTML += "<p>Converted back to text: " + textVersion + "</p>";
+
+            var newSentence = sentence.split(findWord).join(replaceWord);
+            output.innerHTML += "<p>Updated sentence: " + newSentence + "</p>";
+
+            try {
+                var brokenValue = JSON.parse(sentence);
+                output.innerHTML += "<p>Parsed value: " + brokenValue + "</p>";
+            } catch (error) {
+                output.innerHTML += "<p>Error handled safely: " + error.message + "</p>";
+            }
+        }
+    </script>
+</body>
+
+</html>
